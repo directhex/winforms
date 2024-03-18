@@ -3790,8 +3790,7 @@ public partial class ComboBox : ListControl
                     // WM_MOUSELEAVE to ourselves, since that also sets up the right state. Or... at least the state is the same
                     // as with Theming on.
 
-                    if (!Application.RenderWithVisualStyles && GetStyle(ControlStyles.UserPaint) == false
-                        && DropDownStyle == ComboBoxStyle.DropDownList
+                    if (!Application.RenderWithVisualStyles && !GetStyle(ControlStyles.UserPaint) && DropDownStyle == ComboBoxStyle.DropDownList
                         && (FlatStyle == FlatStyle.Flat || FlatStyle == FlatStyle.Popup))
                     {
                         PInvoke.PostMessage(this, PInvoke.WM_MOUSELEAVE);

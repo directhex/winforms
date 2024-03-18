@@ -3849,7 +3849,7 @@ public unsafe partial class Control :
             // If we didn't find the thread, or if GetExitCodeThread failed, we don't know the thread's state:
             // if we don't know, we shouldn't throw.
             if ((returnValue && exitCode != NTSTATUS.STILL_ACTIVE)
-                || (returnValue == false && Marshal.GetLastWin32Error() == (int)WIN32_ERROR.ERROR_INVALID_HANDLE)
+                || (!returnValue && Marshal.GetLastWin32Error() == (int)WIN32_ERROR.ERROR_INVALID_HANDLE)
                 || AppDomain.CurrentDomain.IsFinalizingForUnload())
             {
                 if (waitHandle.WaitOne(1, false))
@@ -7778,7 +7778,7 @@ public unsafe partial class Control :
                     or PictureBox        // Inherits from Control
                     or ProgressBar       // Inherits from Control
                     or ScrollableControl // Inherits from Control
-                    or TextBoxBase       // Excluded - probably too invasive.
+                    // or TextBoxBase    // Excluded - probably too invasive.
                     or TrackBar          // Inherits from Control
                     or TreeView          // Inherits from Control
                     or UpDownBase)       // Inherits from Control
